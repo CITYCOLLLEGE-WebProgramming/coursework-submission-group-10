@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" type="image/x-icon" href="../Images/FeastFinderLogo.jpg">
+    <link rel="stylesheet" href="../Css/style.css">
+</head>
+<body>
+    <div class="header-text">Savor the best bites in town, curated to your taste</div>
+
+    <div class="profile-container">
+        <h2>Welcome</h2>
+        <form id="login-form" class="profile-form">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Login">
+        </form>
+        <div class="signup-prompt">
+            <p>Don't have an account? <a href="signup.html">Create one now</a></p>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    document.getElementById('login-form').addEventListener('submit', function (event) {
+        // Prevent the form from submitting the default way
+        event.preventDefault();
+
+        var formData = new FormData(this);
+        let data = JSON.stringify(Object.fromEntries(formData));
+        fetch('http://localhost:3001/users/login', {
+            method: 'POST',
+            body: data,
+            credentials: 'include',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Redirect to login page
+                    window.location.href = 'index.html';
+                } else {
+                    // Handle error
+                    console.error('Error:', response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+</script>

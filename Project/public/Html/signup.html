@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="icon" type="image/x-icon" href="../Images/FeastFinderLogo.jpg">
+    <link rel="stylesheet" href="../Css/style.css">
+</head>
+
+<body>
+    <div class="header-text">Savor the best bites in town, curated to your taste</div>
+
+    <div class="profile-container">
+        <h2>Create an Account</h2>
+        <form id="signup-form" class="profile-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="surname">Surname</label>
+            <input type="text" id="surname" name="surname" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Sign Up">
+        </form>
+    </div>
+</body>
+
+</html>
+<script>
+    document.getElementById('signup-form').addEventListener('submit', function (event) {
+        // Prevent the form from submitting the default way
+        event.preventDefault();
+
+        var formData = new FormData(this);
+        let data = JSON.stringify(Object.fromEntries(formData));
+        console.log(formData);
+        fetch('http://localhost:3001/users/register', {
+            method: 'POST',
+            body: data,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Redirect to login page
+                    window.location.href = 'login.html';
+                } else {
+                    // Handle error
+                    console.error('Error:', response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+</script>

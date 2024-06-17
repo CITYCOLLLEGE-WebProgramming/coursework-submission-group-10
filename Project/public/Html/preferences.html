@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Preferences</title>
+    <link rel="icon" type="image/x-icon" href="../Images/FeastFinderLogo.jpg">
+    <link rel="stylesheet" href="../Css/style.css">
+</head>
+<body>
+    <div class="header-text">Savor the best bites in town, curated to your taste</div>
+<!-- Login and Sign Up buttons-->
+
+<div class ="auth-buttons">
+    <a href="login.html" class="btn">Login</a>
+    <a href="signup.html" class="btn">Sign Up</a>
+</div>
+
+    <nav class="navbar">
+        <img src="../Images/NavLogo.jpg" alt="Logo" class="logo">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="preferences.html">Preferences</a></li>
+            <li><a href="recommendations.html">Recommendations</a></li>
+            <li class="settings-dropdown">
+                <a href="javascript:void(0)" onclick="toggleDropdown()">Settings</a>
+                <div class="dropdown-content">
+                    <a href="myprofile.html">My Profile</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="index.html#logout">Log Out</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="preferences-container">
+        <h2>Select Your Food Preferences</h2>
+        <form class="preferences-list">
+            <label><input type="checkbox" name="food" value="Italian"> European</label>
+            <label><input type="checkbox" name="food" value="Asian"> Asian</label>
+            <label><input type="checkbox" name="food" value="Mexican"> Mexican</label>
+            <label><input type="checkbox" name="food" value="Italian"> Italian</label>
+            <label><input type="checkbox" name="food" value="Fast Food"> Fast Food</label>
+            <label><input type="checkbox" name="food" value="Greek"> Greek</label>
+            <label><input type="checkbox" name="food" value="Sea Food"> Sea Food</label>
+            <label><input type="checkbox" name="food" value="Mediteranian"> Mediteranian</label>
+            <label><input type="checkbox" name="food" value="Middle-Eastern"> Middle-Eastern</label>
+        
+        <h2>Select Your Price Range</h2>
+        <form class="preferences-list">
+            <label><input type="checkbox" name="price" value="High"> High</label>
+            <label><input type="checkbox" name="price" value="Medium"> Medium</label>
+            <label><input type="checkbox" name="price" value="Low"> Low</label>
+        
+        <h2>Select Your Rating</h2>
+        <form class="preferences-list">
+            <label><input type="checkbox" name="rating" value="High"> 5</label>
+            <label><input type="checkbox" name="rating" value="Medium"> 4</label>
+            <label><input type="checkbox" name="rating" value="Low"> 3</label>
+            <label><input type="checkbox" name="rating" value="Medium"> 2</label>
+            <label><input type="checkbox" name="rating" value="Low"> 1</label>
+        
+        <button type="submit">Save Preferences</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.querySelector('.dropdown-content');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h2>Social Media</h2>
+            <div class="social-icons">
+                <img src="../Images/Instagram.png" alt="Instagram" class="social-icon">
+                <img src="../Images/Facebook.png" alt="Facebook" class="social-icon">
+                <span class="social-text">FeastFinder</span>
+            </div>
+        </div>
+        <div class="footer-section links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="preferences.html">Preferences</a></li>
+                <li><a href="recommendations.html">Recommendations</a></li>
+                <li><a href="myprofile.html">My Profile</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section contact">
+            <h2>Contact Us</h2>
+            <p>Email: contact@feastfinder.com</p>
+            <p>Phone: (123) 456-7890</p>
+            <p>Address: Thessaloniki, Greece</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2024 FeastFinder | All rights reserved
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="icon" type="image/x-icon" href="../Images/FeastFinderLogo.jpg">
+    <link rel="stylesheet" href="../Css/style.css">
+</head>
+
+<body>
+    <div class="header-text">Savor the best bites in town, curated to your taste</div>
+
+    <!-- Login and Sign Up buttons-->
+
+    <div class="auth-buttons">
+        <a href="login.html" class="btn">Login</a>
+        <a href="signup.html" class="btn">Sign Up</a>
+    </div>
+
+    <nav class="navbar">
+        <img src="../Images/NavLogo.jpg" alt="Logo" class="logo">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="preferences.html">Preferences</a></li>
+            <li><a href="recommendations.html">Recommendations</a></li>
+            <li class="settings-dropdown">
+                <a href="javascript:void(0)" onclick="toggleDropdown()">Settings</a>
+                <div class="dropdown-content">
+                    <a href="MyProfile.html">My Profile</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="index.html#logout">Log Out</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+
+    <div class="search-container">
+        <label for="search">Looking for something specific?</label>
+        <input type="text" id="search" name="search" placeholder="Search...">
+        <input type="submit" value="Search">
+    </div>
+
+
+    <div class="container"></div>
+    <div class="container">
+        <div class="home-box">
+            <img src="/images/Restaurant1.jpg" alt="Restaurant 1"> 
+            <div class="home-info">
+                <h3>Restaurant Name 1</h3>
+                <div class="home-stars">
+                    ★★★★☆
+                </div>
+            </div>
+        </div>
+        <div class="home-box">
+            <img src="/images/restaurant2.jpg" alt="Restaurant 2">
+            <div class="home-info">
+                <h3>Restaurant Name 2</h3>
+                <div class="home-stars">
+                    ★★★★★
+                </div>
+            </div>
+        </div>
+        <div class="home-box">
+            <img src="/images/Restaurant3.jpg" alt="Restaurant 3"> 
+            <div class="home-info">
+                <h3>Restaurant Name 3</h3>
+                <div class="home-stars">
+                    ★★★★☆
+                </div>
+            </div>
+        </div>
+        <div class="home-box">
+            <img src="/images/restaurant4.jpg" alt="Restaurant 4">
+            <div class="home-info">
+                <h3>Restaurant Name 4</h3>
+                <div class="home-stars">
+                    ★★★★★
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        fetch('http://localhost:3001/api/restaurants', {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                data = data.data;
+                const container = document.querySelector('.container');
+                data.forEach(item => {
+                    const box = document.createElement('div');
+                    box.className = 'home-box';
+
+                    const img = document.createElement('img');
+                    img.src = item.image; 
+                    img.alt = item.name;
+                    box.appendChild(img);
+
+                    const info = document.createElement('div');
+                    info.className = 'home-info';
+
+                    const h3 = document.createElement('h3');
+                    h3.textContent = item.name;
+                    info.appendChild(h3);
+
+                    const stars = document.createElement('div');
+                    stars.className = 'home-stars';
+                    let starsString = '';
+                    for (let i = 0; i < item.rating; i++) { 
+                        starsString += '★';
+                    }
+                    stars.textContent = starsString;
+                    info.appendChild(stars);
+
+                    box.appendChild(info);
+                    container.appendChild(box);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        function toggleDropdown() {
+            const dropdown = document.querySelector('.dropdown-content');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h2>Social Media</h2>
+            <div class="social-icons">
+                <img src="../Images/Instagram.png" alt="Instagram" class="social-icon">
+                <img src="../Images/Facebook.png" alt="Facebook" class="social-icon">
+                <span class="social-text">FeastFinder</span>
+            </div>
+        </div>
+        <div class="footer-section links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="preferences.html">Preferences</a></li>
+                <li><a href="recommendations.html">Recommendations</a></li>
+                <li><a href="myprofile.html">My Profile</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section contact">
+            <h2>Contact Us</h2>
+            <p>Email: contact@feastfinder.com</p>
+            <p>Phone: (123) 456-7890</p>
+            <p>Address: Thessaloniki, Greece</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2024 FeastFinder | All rights reserved
+    </div>
+</footer>
+
+</body>
+
+</html>
